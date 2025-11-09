@@ -1,0 +1,4 @@
+namespace devfreela.Core.Repositories
+{
+    
+}
