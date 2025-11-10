@@ -1,12 +1,19 @@
 using devfreela.Application.Services.Interfaces;
+using devfreela.Application.ViewModels;
+using devfreela.Application.InputModels;
+using devfreela.Infrastructure.Persistence;
+
+
 
 namespace devfreela.Application.Services.Implementations
 {
     public class ProjectService : IProjectService
     {
+        private readonly DevFreelaDbContext _dbContext;
+        public ProjectService(DevFreelaDbContext dbContext) { }
         public int Create(NewProjectInputModel inputModel)
         {
-           
+
             return 1;
         }
 
