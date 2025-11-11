@@ -1,3 +1,6 @@
+using devfreela.Application.InputModels;
+using devfreela.Application.ViewModel;
+
 namespace devfreela.Application.Services.Interfaces
 {
     public interface IProjectService

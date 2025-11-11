@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\devfreela.Core\DevFreela.core.csproj" />
-    <ProjectReference Include="..\devfreela.Infrastructure\devfreela.Infrastructure.csproj" />
+    <ProjectReference Include="..\devfreela.Core\DevFreela.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

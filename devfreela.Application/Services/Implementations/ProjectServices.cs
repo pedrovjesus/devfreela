@@ -1,57 +1,66 @@
 using devfreela.Application.Services.Interfaces;
-using devfreela.Application.ViewModels;
+using devfreela.Application.ViewModel;
 using devfreela.Application.InputModels;
 using devfreela.Infrastructure.Persistence;
-
-
+using devfreela.Core.Entities;
+using System.Collections.Generic;
 
 namespace devfreela.Application.Services.Implementations
 {
     public class ProjectService : IProjectService
     {
-        private readonly DevFreelaDbContext _dbContext;
-        public ProjectService(DevFreelaDbContext dbContext) { }
+        private readonly DevfreelaDbContext _dbContext;
+
+        public ProjectService(DevfreelaDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public int Create(NewProjectInputModel inputModel)
         {
+            var project = new Project(inputModel.Title, inputModel.Description, inputModel.IdClient, inputModel.IdFreelancer, inputModel.TotalCost);
+            _dbContext.Projects.Add(project);
 
-            return 1;
+            return project.id;
         }
 
         public void CreateComment(CreateCommentInputModel inputModel)
         {
-            // TODO
+            var comment = new ProjectComment(inputModel.Content, inputModel.IdUser, inputModel.IdProject);
+            _dbContext.ProjectComments.Add(comment);
+            
         }
 
         public void Delete(int id)
         {
-            // TODO
+            // Apenas esqueleto
         }
 
         public List<ProjectViewModel> GetAll(string query)
         {
-            // TODO: 
-            // Temporário:<ProjectViewModel>();
+            // Retornando lista vazia para evitar erros de build
+            return new List<ProjectViewModel>();
         }
 
         public ProjectDetailsViewModel GetById(int id)
         {
-            // TODO
+            // Retornando null apenas para compilar
             return null;
         }
 
         public void Update(UpdateProjectInputModel inputModel)
         {
-            // TODO
+            // Apenas esqueleto
         }
 
         public void Start(int id)
         {
-            // TODO
+            // Apenas esqueleto
         }
 
         public void Finish(int id)
         {
-            // TODO
+            // Apenas esqueleto
         }
     }
 }

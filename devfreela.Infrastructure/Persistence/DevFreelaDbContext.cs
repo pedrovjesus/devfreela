@@ -29,10 +29,12 @@ namespace devfreela.Infrastructure.Persistence
                 new Skill("JavaScript"),
                 new Skill("SQL")
             };
+            ProjectComments = new List<ProjectComment>();
         }
 
         public List<Project> Projects { get; set; }
         public List<User> Users { get; set; }
         public List<Skill> Skills { get; set; }
+        public List<ProjectComment> ProjectComments { get; set; }
     }
 }
