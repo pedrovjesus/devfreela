@@ -33,34 +33,60 @@ namespace devfreela.Application.Services.Implementations
 
         public void Delete(int id)
         {
-            // Apenas esqueleto
+            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            project.r();
         }
 
         public List<ProjectViewModel> GetAll(string query)
         {
-            // Retornando lista vazia para evitar erros de build
-            return new List<ProjectViewModel>();
+            var projects = _dbContext.Projects;
+
+            var projectsViewModel = projects
+                .Select(p => new ProjectViewModel(p.Title, p.CreatedAt))
+                .ToList();
+
+            return projectsViewModel;
         }
 
         public ProjectDetailsViewModel GetById(int id)
         {
-            // Retornando null apenas para compilar
-            return null;
+            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            if (project == null)
+            {
+                return null;
+            }
+            var projectDetailsViewModel = new ProjectDetailsViewModel(
+                project.id,
+                project.Title,
+                project.Description,
+                project.TotalCost,
+                project.StartedAt,
+                project.FinishedAt
+                );
+            return projectDetailsViewModel;
         }
 
         public void Update(UpdateProjectInputModel inputModel)
         {
-            // Apenas esqueleto
+            var project = _dbContext.Projects.SingleOrDefault(p => p.id == inputModel.Id);
+
+            project.Update(inputModel.Title, inputModel.Description, inputModel.TotalCost);
+
+
         }
 
         public void Start(int id)
         {
-            // Apenas esqueleto
+            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            project.Start();
         }
 
         public void Finish(int id)
         {
-            // Apenas esqueleto
+            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+
+            project.Finish();
+
         }
     }
 }
