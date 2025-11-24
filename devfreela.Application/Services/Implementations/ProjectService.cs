@@ -21,7 +21,7 @@ namespace devfreela.Application.Services.Implementations
             var project = new Project(inputModel.Title, inputModel.Description, inputModel.IdClient, inputModel.IdFreelancer, inputModel.TotalCost);
             _dbContext.Projects.Add(project);
 
-            return project.id;
+            return project.Id;
         }
 
         public void CreateComment(CreateCommentInputModel inputModel)
@@ -33,8 +33,11 @@ namespace devfreela.Application.Services.Implementations
 
         public void Delete(int id)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
-            project.r();
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
+            if (project != null)
+            {
+                project.Cancel();
+            }
         }
 
         public List<ProjectViewModel> GetAll(string query)
@@ -50,13 +53,13 @@ namespace devfreela.Application.Services.Implementations
 
         public ProjectDetailsViewModel GetById(int id)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
             if (project == null)
             {
                 return null;
             }
             var projectDetailsViewModel = new ProjectDetailsViewModel(
-                project.id,
+                project.Id,
                 project.Title,
                 project.Description,
                 project.TotalCost,
@@ -68,7 +71,7 @@ namespace devfreela.Application.Services.Implementations
 
         public void Update(UpdateProjectInputModel inputModel)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.id == inputModel.Id);
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == inputModel.Id);
 
             project.Update(inputModel.Title, inputModel.Description, inputModel.TotalCost);
 
@@ -77,13 +80,13 @@ namespace devfreela.Application.Services.Implementations
 
         public void Start(int id)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
             project.Start();
         }
 
         public void Finish(int id)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.id == id);
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
             project.Finish();
 
