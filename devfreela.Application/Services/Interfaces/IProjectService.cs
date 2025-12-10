@@ -13,5 +13,6 @@ namespace devfreela.Application.Services.Interfaces
         void CreateComment(CreateCommentInputModel inputModel);
         void Start(int id);
         void Finish(int id);
+        void Update(ProjectDetailsViewModel project);
     }
 }
